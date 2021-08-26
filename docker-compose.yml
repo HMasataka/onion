@@ -7,13 +7,16 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     networks:
       - mysql-network
   cli:
     image: mysql
     networks:
       - mysql-network
-    command: mysql -hmysql -uroot -pmysql
+    command: mysql -hmysql -uuser -ppassword db
 networks:
   mysql-network:
     driver: bridge
