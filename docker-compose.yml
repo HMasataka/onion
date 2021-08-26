@@ -13,6 +13,13 @@ services:
     restart: always
     networks:
       - mysql-network
+  create:
+    image: mysql
+    networks:
+      - mysql-network
+    volumes:
+      - ./ddl:/tmp/ddl
+    command: bash -c 'mysql -hmysql -uuser -ppassword db < /tmp/ddl/schema.sql'
   cli:
     image: mysql
     networks:
