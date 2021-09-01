@@ -2,6 +2,7 @@ package router
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -43,6 +44,18 @@ func NewHandlerWithErrorHandler(h HandlerFunc, errorHandler ErrorHandlerFunc) ht
 func DefaultErrorHandler(r *http.Request, w http.ResponseWriter, err error) {
 	// TODO log, response
 	writeResponse(r, w, http.StatusInternalServerError, nil)
+}
+
+func ReadRequest(r *http.Request, out interface{}) error {
+	requestBytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(requestBytes, out)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func writeResponse(r *http.Request, w http.ResponseWriter, code int, data interface{}) {
