@@ -9,6 +9,7 @@ require (
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gofrs/uuid v3.2.0+incompatible // indirect
 	github.com/kat-co/vala v0.0.0-20170210184112-42e1d8b61f12
+	github.com/knocknote/gotx v0.0.0-20210613034618-4e871e48f944
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/viper v1.8.1
 	github.com/volatiletech/inflect v0.0.1 // indirect
