@@ -1,4 +1,4 @@
-output   = "models"
+output   = "domain/models"
 wipe = true
 
 [mysql]

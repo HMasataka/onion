@@ -568,7 +568,7 @@ func testUsersSelect(t *testing.T) {
 }
 
 var (
-	userDBTypes = map[string]string{`ID`: `int`, `Name`: `text`}
+	userDBTypes = map[string]string{`ID`: `varchar`, `Name`: `varchar`}
 	_           = bytes.MinRead
 )
 

@@ -1,5 +1,5 @@
 CREATE TABLE Users (
-  id integer NOT NULL,
-  name text NOT NULL,
+  id VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
