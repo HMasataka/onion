@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/HMasataka/sqlboiler/domain/models"
+	"github.com/HMasataka/onion/domain/models"
 )
 
 type UserRepository interface {

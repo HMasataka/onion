@@ -3,9 +3,9 @@ package usecase
 import (
 	"context"
 
-	"github.com/HMasataka/sqlboiler/domain/models"
-	"github.com/HMasataka/sqlboiler/domain/repository"
-	"github.com/HMasataka/sqlboiler/transaction"
+	"github.com/HMasataka/onion/domain/models"
+	"github.com/HMasataka/onion/domain/repository"
+	"github.com/HMasataka/onion/transaction"
 )
 
 type UserUseCase interface {

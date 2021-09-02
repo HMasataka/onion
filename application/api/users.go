@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/HMasataka/sqlboiler/application/api/router"
-	"github.com/HMasataka/sqlboiler/application/usecase"
-	"github.com/HMasataka/sqlboiler/domain/models"
+	"github.com/HMasataka/onion/application/api/router"
+	"github.com/HMasataka/onion/application/usecase"
+	"github.com/HMasataka/onion/domain/models"
 )
 
 type FindUserRequest struct {
