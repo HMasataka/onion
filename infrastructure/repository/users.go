@@ -5,20 +5,20 @@ import (
 
 	"github.com/HMasataka/sqlboiler/domain/models"
 	"github.com/HMasataka/sqlboiler/domain/repository"
-	gotx "github.com/knocknote/gotx/rdbms"
+	"github.com/HMasataka/sqlboiler/transaction"
 )
 
 type UserRepository struct {
-	rdbms gotx.ClientProvider
+	connectionProvider transaction.ConnectionProvider
 }
 
-func NewUserRepository(rdbms gotx.ClientProvider) repository.UserRepository {
+func NewUserRepository(connectionProvider transaction.ConnectionProvider) repository.UserRepository {
 	return &UserRepository{
-		rdbms: rdbms,
+		connectionProvider: connectionProvider,
 	}
 }
 
 func (r *UserRepository) Find(ctx context.Context, userID string) (*models.User, error) {
-	sqlboilerClient := r.rdbms.CurrentClient(ctx)
-	return models.FindUser(ctx, sqlboilerClient, userID)
+	client := r.connectionProvider.CurrentConnection(ctx)
+	return models.FindUser(ctx, client, userID)
 }

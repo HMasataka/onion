@@ -5,7 +5,7 @@ import (
 
 	"github.com/HMasataka/sqlboiler/domain/models"
 	"github.com/HMasataka/sqlboiler/domain/repository"
-	"github.com/knocknote/gotx"
+	"github.com/HMasataka/sqlboiler/transaction"
 )
 
 type UserUseCase interface {
@@ -13,11 +13,11 @@ type UserUseCase interface {
 }
 
 type userUseCase struct {
-	transactor     gotx.Transactor
+	transactor     transaction.Transactor
 	userRepository repository.UserRepository
 }
 
-func NewSignUpUseCase(transactor gotx.Transactor, userRepository repository.UserRepository) UserUseCase {
+func NewSignUpUseCase(transactor transaction.Transactor, userRepository repository.UserRepository) UserUseCase {
 	return &userUseCase{
 		transactor:     transactor,
 		userRepository: userRepository,
