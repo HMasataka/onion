@@ -2,10 +2,10 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"net/http"
+	"time"
 
-	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-sql-driver/mysql"
 
 	handler "github.com/HMasataka/onion/application/api"
 	"github.com/HMasataka/onion/application/api/router"
@@ -18,10 +18,22 @@ import (
 func main() {
 	r := chi.NewRouter()
 
-	// user:password@tcp(host:port)/dbname
-	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=true",
-		"user", "password", "localhost:3306", "db",
-	))
+	jst, err := time.LoadLocation("Asia/Tokyo")
+	if err != nil {
+		panic(err)
+	}
+
+	c := mysql.Config{
+		DBName:    "db",
+		User:      "user",
+		Passwd:    "password",
+		Addr:      "localhost:3306",
+		Net:       "tcp",
+		ParseTime: true,
+		Collation: "utf8mb4_unicode_ci",
+		Loc:       jst,
+	}
+	db, err := sql.Open("mysql", c.FormatDSN())
 	if err != nil {
 		panic(err)
 	}
