@@ -27,7 +27,6 @@ type ShardKeyProvider func(ctx context.Context) string
 
 type ShardConnectionProvider struct {
 	db               []*sql.DB
-	hashSlot         []uint32
 	shardKeyProvider ShardKeyProvider
 	maxSlot          uint32
 }
@@ -36,14 +35,13 @@ func NewShardConnectionProvider(db []*sql.DB, maxSlot uint32, shardKeyProvider S
 	return &ShardConnectionProvider{
 		db:               db,
 		shardKeyProvider: shardKeyProvider,
-		hashSlot:         GetHashSlotRange(len(db), maxSlot),
 		maxSlot:          maxSlot,
 	}
 }
 
 func (p *ShardConnectionProvider) CurrentConnection(ctx context.Context) Conn {
 	shardKey := p.shardKeyProvider(ctx)
-	index := GetIndexByHash(p.hashSlot, []byte(shardKey), p.maxSlot)
+	index := GetShardingIndex([]byte(shardKey), p.maxSlot)
 	return p.db[index]
 }
 
