@@ -30,9 +30,7 @@ func NewFindUserHandler(useCase usecase.UserUseCase) router.HandlerFunc {
 				return FindUserResponse{}, err
 			}
 			// TODO UseCase層で詰め換え
-			cards := make([]*models.Card, len(userSlice[0].R.UserCards))
-			copy(cards, userSlice[0].R.UserCards)
-			return FindUserResponse{User: userSlice[0], Cards: cards}, err
+			return FindUserResponse{User: userSlice[0], Cards: userSlice[0].R.UserCards}, err
 		},
 	}
 }
