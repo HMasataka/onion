@@ -6,6 +6,7 @@ import (
 	"github.com/HMasataka/onion/domain/models"
 	"github.com/HMasataka/onion/domain/repository"
 	"github.com/HMasataka/onion/transaction"
+	"github.com/volatiletech/sqlboiler/queries/qm"
 )
 
 type UserRepository struct {
@@ -18,7 +19,7 @@ func NewUserRepository(connectionProvider transaction.ConnectionProvider) reposi
 	}
 }
 
-func (r *UserRepository) Find(ctx context.Context, userID string) (*models.User, error) {
+func (r *UserRepository) Find(ctx context.Context, userID string) (models.UserSlice, error) {
 	client := r.connectionProvider.CurrentConnection(ctx)
-	return models.FindUser(ctx, client, userID)
+	return models.Users(qm.Load("UserCards")).All(ctx, client)
 }

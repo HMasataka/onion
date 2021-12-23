@@ -7,5 +7,5 @@ import (
 )
 
 type UserRepository interface {
-	Find(ctx context.Context, userID string) (*models.User, error)
+	Find(ctx context.Context, userID string) (models.UserSlice, error)
 }

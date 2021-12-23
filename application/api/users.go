@@ -14,12 +14,12 @@ type FindUserRequest struct {
 }
 
 type FindUserHandler struct {
-	process func(ctx context.Context, req *FindUserRequest) (*models.User, error)
+	process func(ctx context.Context, req *FindUserRequest) (models.UserSlice, error)
 }
 
 func NewFindUserHandler(useCase usecase.UserUseCase) router.HandlerFunc {
 	return &FindUserHandler{
-		process: func(ctx context.Context, req *FindUserRequest) (*models.User, error) {
+		process: func(ctx context.Context, req *FindUserRequest) (models.UserSlice, error) {
 			return useCase.Find(ctx, req.UserID)
 		},
 	}
