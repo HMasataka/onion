@@ -21,8 +21,9 @@ func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	res, err := h.handler.Process(w, r)
 	if err != nil {
 		h.errorHandler(r, w, err)
+	} else {
+		writeResponse(r, w, http.StatusOK, res)
 	}
-	writeResponse(r, w, http.StatusOK, res)
 }
 
 func NewHandler(h HandlerFunc) http.HandlerFunc {
