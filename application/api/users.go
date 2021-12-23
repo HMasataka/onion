@@ -13,14 +13,28 @@ type FindUserRequest struct {
 	UserID string `json:"user_id"`
 }
 
+type FindUserResponse struct {
+	User  *models.User   `json:"user_id"`
+	Cards *[]models.Card `json:"cards"`
+}
+
 type FindUserHandler struct {
-	process func(ctx context.Context, req *FindUserRequest) (models.UserSlice, error)
+	process func(ctx context.Context, req *FindUserRequest) (FindUserResponse, error)
 }
 
 func NewFindUserHandler(useCase usecase.UserUseCase) router.HandlerFunc {
 	return &FindUserHandler{
-		process: func(ctx context.Context, req *FindUserRequest) (models.UserSlice, error) {
-			return useCase.Find(ctx, req.UserID)
+		process: func(ctx context.Context, req *FindUserRequest) (FindUserResponse, error) {
+			userSlice, err := useCase.Find(ctx, req.UserID)
+			if err != nil {
+				return FindUserResponse{}, err
+			}
+			// TODO UseCase層で詰め換え
+			cards := make([]models.Card, len(userSlice[0].R.UserCards))
+			for i, c := range userSlice[0].R.UserCards {
+				cards[i] = *c
+			}
+			return FindUserResponse{User: userSlice[0], Cards: &cards}, err
 		},
 	}
 }
