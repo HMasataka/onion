@@ -17,21 +17,21 @@ CREATE TABLE `Users` (
 
 ## Columns
 
-| Name | Type | Default | Nullable | Children | Parents | Comment |
-| ---- | ---- | ------- | -------- | -------- | ------- | ------- |
-| id | varchar(255) |  | false | [Card](Card.md) |  |  |
-| name | varchar(255) |  | false |  |  |  |
+| Name | Type         | Default | Nullable | Children        | Parents | Comment |
+| ---- | ------------ | ------- | -------- | --------------- | ------- | ------- |
+| id   | varchar(255) |         | false    | [Card](Card.md) |         |         |
+| name | varchar(255) |         | false    |                 |         |         |
 
 ## Constraints
 
-| Name | Type | Definition |
-| ---- | ---- | ---------- |
+| Name    | Type        | Definition       |
+| ------- | ----------- | ---------------- |
 | PRIMARY | PRIMARY KEY | PRIMARY KEY (id) |
 
 ## Indexes
 
-| Name | Definition |
-| ---- | ---------- |
+| Name    | Definition                   |
+| ------- | ---------------------------- |
 | PRIMARY | PRIMARY KEY (id) USING BTREE |
 
 ## Relations

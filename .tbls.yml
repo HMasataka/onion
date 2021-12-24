@@ -1,2 +1,4 @@
 dsn: mysql://user:password@localhost:3306/db?allowNativePasswords=false&checkConnLiveness=false&collation=utf8mb4_unicode_ci&loc=Asia%2FTokyo&parseTime=true&maxAllowedPacket=0
 docPath: doc
+format:
+  adjust: true

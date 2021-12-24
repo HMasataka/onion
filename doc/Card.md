@@ -19,24 +19,24 @@ CREATE TABLE `Card` (
 
 ## Columns
 
-| Name | Type | Default | Nullable | Children | Parents | Comment |
-| ---- | ---- | ------- | -------- | -------- | ------- | ------- |
-| id | varchar(255) |  | false |  |  |  |
-| user_id | varchar(255) |  | false |  | [Users](Users.md) |  |
+| Name    | Type         | Default | Nullable | Children | Parents           | Comment |
+| ------- | ------------ | ------- | -------- | -------- | ----------------- | ------- |
+| id      | varchar(255) |         | false    |          |                   |         |
+| user_id | varchar(255) |         | false    |          | [Users](Users.md) |         |
 
 ## Constraints
 
-| Name | Type | Definition |
-| ---- | ---- | ---------- |
+| Name        | Type        | Definition                                  |
+| ----------- | ----------- | ------------------------------------------- |
 | Card_ibfk_1 | FOREIGN KEY | FOREIGN KEY (user_id) REFERENCES Users (id) |
-| PRIMARY | PRIMARY KEY | PRIMARY KEY (id) |
+| PRIMARY     | PRIMARY KEY | PRIMARY KEY (id)                            |
 
 ## Indexes
 
-| Name | Definition |
-| ---- | ---------- |
+| Name    | Definition                        |
+| ------- | --------------------------------- |
 | user_id | KEY user_id (user_id) USING BTREE |
-| PRIMARY | PRIMARY KEY (id) USING BTREE |
+| PRIMARY | PRIMARY KEY (id) USING BTREE      |
 
 ## Relations
 

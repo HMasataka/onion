@@ -2,10 +2,10 @@
 
 ## Tables
 
-| Name | Columns | Comment | Type |
-| ---- | ------- | ------- | ---- |
-| [Card](Card.md) | 2 |  | BASE TABLE |
-| [Users](Users.md) | 2 |  | BASE TABLE |
+| Name              | Columns | Comment | Type       |
+| ----------------- | ------- | ------- | ---------- |
+| [Card](Card.md)   | 2       |         | BASE TABLE |
+| [Users](Users.md) | 2       |         | BASE TABLE |
 
 ## Relations
 
